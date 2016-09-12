@@ -13,8 +13,6 @@ module.exports = function correctMe(word, cb) {
         if (err) {
             return cb(err);
         }
-        // const P = words.probability('outrivaled', wordsArr);
-        // console.log('P', P);
         const wordsSet = new Set(wordsArr);
 
         // if the word is correct

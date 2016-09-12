@@ -73,5 +73,3 @@ const words = {
 };
 
 module.exports = words;
-
-// edit1();
