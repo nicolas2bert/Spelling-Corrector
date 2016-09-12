@@ -51,20 +51,20 @@ function replaceOneChar(word) {
     return replaces;
 }
 
-function uniqueArray(arrArg) {
-    return arrArg.filter((elem, pos, arr) => {
-        return arr.indexOf(elem) === pos;
-    });
-}
+const edit = {
+    editWord(word) {
+        return insertOneChar(word).concat(
+            deleteOneChar(word), transposition(word), replaceOneChar(word)
+        );
+    },
+    editWord2(wordsSet) {
+        let arr = [];
+        const wordsArr = Array.from(wordsSet);
+        for (let inc = 0; inc < wordsArr.length; inc++) {
+            arr = arr.concat(edit.editWord(wordsArr[inc]));
+        }
+        return arr;
+    },
+};
 
-const word = 'somthing';
-// const inserts = insertOneChar(word);
-// console.log('inserts', inserts.length);
-// const deletes = deleteOneChar(word);
-// console.log('deletes', deletes);
-// const transposes = transposition(word);
-// console.log('transposes', transposes);
-// const replaces = replaceOneChar(word);
-// console.log('replaces', replaces.length);
-const all = uniqueArray(insertOneChar(word).concat(deleteOneChar(word), transposition(word), replaceOneChar(word)));
-console.log('all', all.length);
+module.exports = edit;
