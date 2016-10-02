@@ -110,9 +110,8 @@ const edit = {
     editWord(word) {
         return getCandidates(word);
     },
-    editWord2(wordsSet) {
+    editWord2(wordsArr) {
         let arr = [];
-        const wordsArr = Array.from(wordsSet);
         for (let inc = 0; inc < wordsArr.length; inc++) {
             arr = arr.concat(getCandidates(wordsArr[inc]));
         }
