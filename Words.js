@@ -8,7 +8,6 @@ class Words {
         this._words = [];
         this._uniqWords = [];
         this._count = {};
-        // this.count = [];
     }
     _readFile(file, cb) {
         fs.readFile(file, 'utf8', (err, data) => {
@@ -18,26 +17,6 @@ class Words {
             return cb(null, data.toLowerCase());
         });
     }
-
-    // known(candidates) {
-    //     const candidatesKnown = [];
-    //     const offWords = new Set(this._uniqWords);
-    //     const uniqCandidates = this._uniqArray(candidates);
-    //     for (let inc = 0; inc < uniqCandidates.length; inc++) {
-    //         // console.log(uniqCandidates[inc]);
-    //         // for (let i = 0; i < this.words.length; i++) {
-    //         //     // console.log(uniqCandidates[i]);
-    //         //     if (uniqCandidates[inc] === this.words[i]) {
-    //         //         candidatesKnown.push(uniqCandidates[inc]);
-    //         //         break;
-    //         //     }
-    //         // }
-    //         if (offWords.has(uniqCandidates[inc])) {
-    //             candidatesKnown.push(uniqCandidates[inc]);
-    //         }
-    //     }
-    //     return candidatesKnown;
-    // }
 
     _uniqArray(arr) {
         return Array.from(new Set(arr));
