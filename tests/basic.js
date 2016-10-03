@@ -3,6 +3,16 @@
 const assert = require('assert');
 const correctMe = require('../index');
 
+// ✓ insert (1100ms)
+// ✓ replace 2 (2306ms)
+// ✓ replace (1114ms)
+// ✓ insert 2 (2839ms)
+// ✓ delete (1082ms)
+// ✓ transpose (1177ms)
+// ✓ transpose + delete (1559ms)
+// ✓ known (471ms)
+// ✓ unknown (4920ms)
+
 describe('Basic tests: ', () => {
     it('insert', done => {
         correctMe('speling', (err, value) => {
