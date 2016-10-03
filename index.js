@@ -22,7 +22,6 @@ module.exports = function correctMe(word, cb) {
         // else if the word need 2 changes
         }
         const candidates2 = words.getCandidates2(candidates1);
-        // console.log('candidates2', candidates2);
         const candidatesKnown2 = words.known(candidates2);
         if (candidatesKnown2.length > 0) {
             words.counter();

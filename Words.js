@@ -7,7 +7,8 @@ class Words {
     constructor() {
         this._words = [];
         this._uniqWords = [];
-        this._count = [];
+        this._count = {};
+        // this.count = [];
     }
     _readFile(file, cb) {
         fs.readFile(file, 'utf8', (err, data) => {
@@ -18,29 +19,22 @@ class Words {
         });
     }
 
-    _probability(candidate) {
-        const value = this._count[0];
-        const nbrs = this._count[1];
-        const nbr = nbrs[value.indexOf(candidate)];
-        return nbr;
-    }
-
     // known(candidates) {
     //     const candidatesKnown = [];
-    //     const offWords = new Set(this.words);
-    //     const uniqCandidates = this.uniqArray(candidates);
+    //     const offWords = new Set(this._uniqWords);
+    //     const uniqCandidates = this._uniqArray(candidates);
     //     for (let inc = 0; inc < uniqCandidates.length; inc++) {
     //         // console.log(uniqCandidates[inc]);
-    //         for (let i = 0; i < this.words.length; i++) {
-    //             // console.log(uniqCandidates[i]);
-    //             if (uniqCandidates[inc] === this.words[i]) {
-    //                 candidatesKnown.push(uniqCandidates[inc]);
-    //                 break;
-    //             }
-    //         }
-    //         // if (offWords.has(uniqCandidates[inc])) {
-    //         //     candidatesKnown.push(uniqCandidates[inc]);
+    //         // for (let i = 0; i < this.words.length; i++) {
+    //         //     // console.log(uniqCandidates[i]);
+    //         //     if (uniqCandidates[inc] === this.words[i]) {
+    //         //         candidatesKnown.push(uniqCandidates[inc]);
+    //         //         break;
+    //         //     }
     //         // }
+    //         if (offWords.has(uniqCandidates[inc])) {
+    //             candidatesKnown.push(uniqCandidates[inc]);
+    //         }
     //     }
     //     return candidatesKnown;
     // }
@@ -50,20 +44,15 @@ class Words {
     }
 
     counter() {
-        const values = [];
-        const nbrs = [];
-        let prev = '';
-        this._words.sort();
+        const count = {};
         for (let inc = 0; inc < this._words.length; inc++) {
-            if (this._words[inc] !== prev) {
-                values.push(this._words[inc]);
-                nbrs.push(1);
+            if (count[this._words[inc]]) {
+                count[this._words[inc]] = count[this._words[inc]] + 1;
             } else {
-                nbrs[nbrs.length - 1]++;
+                count[this._words[inc]] = 1;
             }
-            prev = this._words[inc];
         }
-        this._count = [values, nbrs];
+        this._count = count;
     }
 
     known(candidates) {
@@ -139,7 +128,7 @@ class Words {
         let maxIndex = 0;
         let maxCount = 0;
         for (let inc = 0; inc < candidates.length; inc++) {
-            const prob = this._probability(candidates[inc]);
+            const prob = this._count[candidates[inc]];
             if (prob > maxCount) {
                 maxCount = prob;
                 maxIndex = inc;

@@ -1,0 +1,75 @@
+- arr.push() inside loop (for) slows down the process
+=> if possible increment object {'hello':1, 'word':1}
+instead of ['hello', 'word'] [1, 1]
+Exemple: Words.counter()
+
+I replaced:
+
+counter() {
+    const values = [];
+    const nbrs = [];
+    let prev = '';
+    this._words.sort();
+    for (let inc = 0; inc < this._words.length; inc++) {
+        // console.log('inc', inc);
+        if (this._words[inc] !== prev) {
+            values.push(this._words[inc]);
+            nbrs.push(1);
+        } else {
+            nbrs[nbrs.length - 1]++;
+        }
+        prev = this._words[inc];
+    }
+    this._count = [values, nbrs];
+}
+
+to
+
+counter() {
+    const count = {};
+    for (let inc = 0; inc < this._words.length; inc++) {
+        if (count[this._words[inc]]) {
+            count[this._words[inc]] = count[this._words[inc]] + 1;
+        } else {
+            count[this._words[inc]] = 1;
+        }
+    }
+    this._count = count;
+}
+
+- User filter instead of loop push
+but above all : use Set(arr).has instead of arr.indexOf
+
+Exemple:
+
+I replaced :
+
+
+known(candidates) {
+    const candidatesKnown = [];
+    const offWords = new Set(this._uniqWords);
+    const uniqCandidates = this._uniqArray(candidates);
+    for (let inc = 0; inc < uniqCandidates.length; inc++) {
+        // console.log(uniqCandidates[inc]);
+        // for (let i = 0; i < this.words.length; i++) {
+        //     // console.log(uniqCandidates[i]);
+        //     if (uniqCandidates[inc] === this.words[i]) {
+        //         candidatesKnown.push(uniqCandidates[inc]);
+        //         break;
+        //     }
+        // }
+        if (offWords.has(uniqCandidates[inc])) {
+            candidatesKnown.push(uniqCandidates[inc]);
+        }
+    }
+    return candidatesKnown;
+}
+
+to
+
+known(candidates) {
+    const uniqCandidates = this._uniqArray(candidates);
+    const offWords = new Set(this._uniqWords);
+    return uniqCandidates.filter(anyWord =>
+      offWords.has(anyWord));
+}

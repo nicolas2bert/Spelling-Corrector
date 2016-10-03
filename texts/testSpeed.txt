@@ -1,0 +1,23 @@
+Init:
+
+✓ insert (1119ms)
+✓ replace 2 (2352ms)
+✓ replace (1122ms)
+✓ insert 2 (2896ms)
+✓ delete (1123ms)
+✓ transpose (1237ms)
+✓ transpose + delete (1613ms)
+✓ known (461ms)
+✓ unknown (5141ms)
+
+Add Words.counter() cf: comments.txt
+
+✓ insert (679ms)
+✓ replace 2 (2004ms)
+✓ replace (703ms)
+✓ insert 2 (2458ms)
+✓ delete (771ms)
+✓ transpose (643ms)
+✓ transpose + delete (1227ms)
+✓ known (492ms)
+✓ unknown (4955ms)
