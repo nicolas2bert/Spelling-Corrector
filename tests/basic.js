@@ -13,6 +13,16 @@ const correctMe = require('../index');
 // ✓ known (471ms)
 // ✓ unknown (4920ms)
 
+// ✓ insert (1119ms)
+// ✓ replace 2 (2352ms)
+// ✓ replace (1122ms)
+// ✓ insert 2 (2896ms)
+// ✓ delete (1123ms)
+// ✓ transpose (1237ms)
+// ✓ transpose + delete (1613ms)
+// ✓ known (461ms)
+// ✓ unknown (5141ms)
+
 describe('Basic tests: ', () => {
     it('insert', done => {
         correctMe('speling', (err, value) => {
